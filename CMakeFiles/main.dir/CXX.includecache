@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/Civil.cpp
+stdio.h
+-
+math.h
+-
+Civil.h
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/Civil.h
+
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/Civil.h
+
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/Functions.h
+
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/main.cpp
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+cstring
+-
+Civil.h
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/Civil.h
+Functions.h
+/home/balpreet/public_html/cgi-bin/CantileverBeam/src/Functions.h
+rude/cgi.h
+-
+iostream
+-
+

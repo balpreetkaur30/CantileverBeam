@@ -1,0 +1,236 @@
+    <blockquote>
+    <div style="text-align:center; color:#2B1B17;"> 
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+<div style="text-align:center; color:#996699;">
+    <small style="text-align:center; color:#996699;">Someone famous <cite title="Source Title">Source Title</cite></small>
+    </blockquote>
+
+   <div class="container">
+
+<div style="float:left; width:480px; margin-left:0px;">
+<form role="form" method="get" class="well form-vertical" id='mainform' style="background-color:#9ACD32;">
+<div class="control-group">
+<legend style="text-align:center; color:#2B1B17;">
+ Cantilever Beam Input Form</legend>
+       
+   </div>
+    	<div class="control-group">
+        <label for="spanbeam" class="control-label">Span of Beam</label>
+        <div class="controls">
+            <input type="text" name="spanbeam" id="spanbeam" placeholder="Span of the beam"class="input-medium" />
+            <span class="help-block">Sample Input: 5</span>
+        </div>
+   </div>
+
+ 	<div class="control-group">
+        <label for ="noseg" class="control-label">No of Segments</label>
+        <div class="controls">
+            <input type="text" name="noseg" id="noseg" placeholder="No of Segments" class="input-medium"/>
+            <span class="help-block">Sample Input: 5</span>
+        </div>
+   </div>        
+    	
+    <div class="control-group">
+        <label for="nc" class="control-label">No of concentrated Load</label>
+        <div class="controls">
+            <input type="text" name="nc" id='nc' placeholder="No of concentrated Load" class="input-medium"/>
+            <span class="help-block">Sample Input: 4</span>
+        </div>
+    </div>
+  
+   <div style="display: none" id="ncvariables">
+	<div class="control-group">
+
+<table style="width:80%">
+<tr>
+<td>
+        <label for="p" class="control-label">Intensity</label>
+        <div class="controls" id='pcontrols' >
+            <span class="help-block">Sample Input: 2, 2, 3, 1</span>
+        </div>
+</td>
+<td>
+<label for="ac" class="control-label">Position</label>
+        <div class="controls" id='accontrols'>
+            <span class="help-block">Sample Input: 0, 1, 2, 4</span>
+        </div>
+</td>
+</tr>
+</table>
+  	</div>
+
+  	
+  </div>
+	<div class="control-group">
+        <label for="nu" class="control-label">No of UDL</label>
+        <div class="controls">
+            <input type="text" name="nu" id="nu" placeholder="No of uniformly distributed Load" class="input-medium"/>
+            <span class="help-block">Sample Input: 1</span>
+        </div>
+    </div>
+	  <div style="display: none" id="nuvariables">
+	  <div class="control-group">
+<table style="width:80%">
+<tr>
+<td>    
+    <label for="wu" class="control-label">Intensity </label>
+        <div class="controls" id='wucontrols'>
+            <span class="help-block">Sample Input: 2</span>
+        </div>
+  </td>
+<td>
+
+	  
+      <label for="au" class="control-label">Position </label>
+      <div class="controls" id='aucontrols'>
+      <span class="help-block">Sample Input: 1</span>
+      </div>
+  </td>
+<td>
+
+	
+      <label for="lu" class="control-label">Length of UDL</label>
+      <div class="controls" id="lucontrols">
+        <span class="help-block">Sample Input: 2</span>
+      </div>
+	</td>
+</tr>
+</table>
+
+  </div>
+</div>
+
+   <div class="control-group">
+        <div class="controls">
+            <input type="submit" class="btn btn-inverse" name="initialparameter"/>
+        </div>
+  </div>
+
+</form>
+</div>
+
+<div style="float:left; width:450px; margin-left:10px;">
+<form role="form" method="get" class="well form-vertical" id='placeholder' style="background-color:#9ACD32;">
+
+    <div class="control-group">
+      <legend style="text-align:center; color:#2B1B17;">
+ Cantilever Beam Input Graph</legend>
+<address>
+    <strong>Twitter, Inc.</strong><br>
+    795 Folsom Ave, Suite 600<br>
+    San Francisco, CA 94107<br>
+    <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+     
+    <address>
+    <strong>Full Name</strong><br>
+    <a href="mailto:#">first.last@example.com</a>
+    </address>
+<input class="span3" type="email" required>
+<img src="..." class="img-rounded">
+   <div id="placeholder" style="width:300px;height:150px"></div>
+   </div>
+
+</form>
+</div>
+
+
+</div>
+    
+<script type="text/javascript">
+
+    $("#mainform").validate({
+        rules:{
+            nc: {
+                required: true,
+                number: true
+            },
+            nu: {
+                required: true,
+                number: true
+            },
+            noseg: {
+                required: true,
+                number: true,
+                range: [1,1]
+            },
+            spanbeam: {
+                required: true,
+                number: true
+            },
+
+
+        }
+    });
+    $("#nc").keyup(function(event) {
+        /* Act on the event */
+
+        if (isNaN(this.value))
+        {
+            this.value = 0;
+        }
+
+        if (parseInt(this.value)==0)
+        {
+            $("#ncvariables").hide();
+        }
+
+        //Create inputs accordingn to that
+        var pinput= $("<input type='text' name='p' value='0' />");
+        var acinput = $("<input type='text' name='ac' value='0' />");
+
+
+        //remove any previous inputs
+        $("#pcontrols").children("input").remove();
+        $("#accontrols").children("input").remove();
+        for (i=0; i<parseInt(this.value); i++)
+        {
+            $("<input type='text' id='p' name='p' value='0' class='input-small'/>").appendTo('#pcontrols');
+        }
+        
+        for (i=0; i<this.value; i++)
+        {
+            $("#accontrols").append("<input type='text' name='ac' id='ac' value='0' class='input-small' />");
+        }
+
+        $("#ncvariables").show();
+    });
+
+    $("#nu").keyup(function(event) {
+        /* Act on the event */
+        if (isNaN(this.value))
+        {
+            this.value=0;
+        }
+
+        if (parseInt(this.value)==0)
+        {
+            $("#nuvariables").hide();
+        }
+
+        var wuinput = $("<input type='text' name='wu' value='0' />");
+        var auinput = $("<input type='text' name='au' value='0' />");
+        var luinput = $("<input type='text' name='lu' value='0' />");
+        $("#wucontrols").children("input").remove();
+        $("#aucontrols").children("input").remove();
+        $("#lucontrols").children("input").remove();
+
+        for (i=0; i<this.value; i++)
+        {
+            $("<input type='text' id='wu' name='wu' value='0' class='input-small'/>").appendTo('#wucontrols');
+        }
+        for (i=0; i<this.value; i++)
+        {
+          $("<input type='text' id='au' name='au' value='0' class='input-small'/>").appendTo('#aucontrols');
+        }
+        for (i=0; i<this.value; i++)
+        {
+            $("<input type='text' id='lu' name='lu' value='0' class='input-small'/>").appendTo('#lucontrols');
+        }
+
+        $("#nuvariables").show();
+
+
+    });
+
+</script>
